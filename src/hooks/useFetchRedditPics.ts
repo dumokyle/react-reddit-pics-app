@@ -6,7 +6,7 @@ export function useFetchRedditPics() {
   const [pics, setPics] = useState<RedditPic[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const nextToken = React.useRef<string>("");
+  const nextToken = React.useRef<string>();
 
   const getPics = async () => {
     setLoading(true);
@@ -27,6 +27,6 @@ export function useFetchRedditPics() {
   return {
     pics,
     loading,
-    getPics,
+    getMorePics: nextToken.current ? getPics : undefined,
   };
 }

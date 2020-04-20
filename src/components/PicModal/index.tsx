@@ -8,12 +8,12 @@ import {
 } from "@material-ui/icons";
 
 import { RedditPic } from "../../types/RedditPic";
+import { BREAKPOINTS } from "../../constants/breakpoints";
 
 export interface PicModalProps {
   pic: RedditPic;
   onCloseModal: () => void;
   onArrowClick?: (incrementValue: number) => void;
-  getPrevImage?: () => void;
 }
 
 function PicModal({ pic, onCloseModal, onArrowClick }: PicModalProps) {
@@ -130,7 +130,7 @@ const ModalContainer = styled.div`
     flex: 0 0 33%;
   }
 
-  @media screen and (max-width: 1080px) {
+  @media screen and (max-width: ${BREAKPOINTS.TABLET_BREAKPOINT}) {
     flex-wrap: wrap;
     height: 100%;
     left: 0px;

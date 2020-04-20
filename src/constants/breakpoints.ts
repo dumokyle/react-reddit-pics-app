@@ -1,0 +1,4 @@
+export const BREAKPOINTS = {
+  TABLET_BREAKPOINT: "1080px",
+  MOBILE_BREAKPOINT: "700px",
+};

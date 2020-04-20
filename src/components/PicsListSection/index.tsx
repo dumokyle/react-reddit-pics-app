@@ -9,7 +9,7 @@ export interface PicsListProps {
   pics: RedditPic[];
   loading: boolean;
   showLoadMore: boolean;
-  onLoadMoreClick: () => void;
+  onLoadMoreClick?: () => void;
   onPicClick: (index: number) => void;
 }
 function PicsListSection({
@@ -32,7 +32,7 @@ function PicsListSection({
               <span data-testid="pic-list-empty">No Pics Found</span>
             )}
 
-            {showLoadMore && (
+            {showLoadMore && onLoadMoreClick && (
               <Button
                 variant="contained"
                 onClick={onLoadMoreClick}

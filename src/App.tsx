@@ -11,11 +11,10 @@ import PicsListSection from "./components/PicsListSection";
 import PicModal from "./components/PicModal";
 
 function App() {
-  const { pics, loading, getPics } = useFetchRedditPics();
-  const { saveScrollPosition, setScrollPosition } = useScrollPosition();
+  const { pics, loading, getMorePics } = useFetchRedditPics();
 
+  const { saveScrollPosition, setScrollPosition } = useScrollPosition();
   const [query, setQuery] = useState<string>("");
-  const [selectedPicIndex, setSelectedPicIndex] = useState<number>();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // when making query save scroll position
@@ -31,6 +30,7 @@ function App() {
   }, [query, setScrollPosition]);
 
   const filteredPics = filterByTitle(pics, query);
+  const [selectedPicIndex, setSelectedPicIndex] = useState<number>();
 
   const onCloseModal = () => {
     setSelectedPicIndex(undefined);
@@ -47,9 +47,7 @@ function App() {
   };
 
   const selectedPic =
-    selectedPicIndex !== undefined && !!filteredPics[selectedPicIndex]
-      ? filteredPics[selectedPicIndex]
-      : undefined;
+    selectedPicIndex !== undefined && filteredPics[selectedPicIndex];
 
   return (
     <>
@@ -72,7 +70,7 @@ function App() {
           pics={filteredPics}
           loading={loading}
           showLoadMore={!query}
-          onLoadMoreClick={getPics}
+          onLoadMoreClick={getMorePics}
           onPicClick={setSelectedPicIndex}
         />
       </MainWrapper>
@@ -89,7 +87,6 @@ function App() {
     </>
   );
 }
-
 export default App;
 
 export function filterByTitle(list: RedditPic[], query: string): RedditPic[] {

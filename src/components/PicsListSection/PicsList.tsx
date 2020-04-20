@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 
 import { RedditPic } from "../../types/RedditPic";
 import PicListItem from "./PicListItem";
+import { BREAKPOINTS } from "../../constants/breakpoints";
 
 export interface PicsListProps {
   pics: RedditPic[];
@@ -47,11 +48,11 @@ const PicListContainer = styled.ul`
       transform: scale(1.025);
     }
 
-    @media screen and (max-width: 1080px) {
+    @media screen and (max-width: ${BREAKPOINTS.TABLET_BREAKPOINT}) {
       flex: 0 0 31%;
     }
 
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: ${BREAKPOINTS.MOBILE_BREAKPOINT}) {
       flex: 0 0 48%;
     }
   }
